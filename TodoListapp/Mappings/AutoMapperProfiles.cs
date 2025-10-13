@@ -8,8 +8,11 @@ namespace TodoListapp.Mappings
     {
         public AutoMapperProfiles()
         {
-            CreateMap<AddRegistrationRequestDto, Registration>().ReverseMap();
-            CreateMap<Registration ,RegistrationDto >().ReverseMap();
+            CreateMap<RegistrationUserRequestDto, User>().ReverseMap();
+            CreateMap<User ,userDto >().ReverseMap();
+            CreateMap<CreateTodoItemDto,TodoItem >().ReverseMap();
+            CreateMap<TodoItem ,TodoItemDto >().ReverseMap();
+           CreateMap<TodoItem,updateTodoDto >().ReverseMap();
 
 
         }
