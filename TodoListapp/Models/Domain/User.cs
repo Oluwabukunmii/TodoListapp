@@ -11,6 +11,6 @@
         // navigation
 
         public ICollection<TodoItem> TodoItems { get; set; } = new List<TodoItem>();
-        //testing something
+
     }
 }
