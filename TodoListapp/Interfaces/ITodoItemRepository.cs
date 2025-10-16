@@ -1,6 +1,6 @@
 ﻿using TodoListapp.Models.Domain;
 
-namespace TodoListapp.Repositories
+namespace TodoListapp.Interfaces
 {
     public interface ITodoItemRepository
     {
