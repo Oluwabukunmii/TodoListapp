@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TodoListapp.CustomActionFilters;
 using TodoListapp.Data;
 using TodoListapp.Models.Domain;
 using TodoListapp.Models.Dtos;
@@ -27,6 +28,8 @@ namespace TodoListapp.Controllers
         }
         [Route("Register")]
         [HttpPost]
+        [ValidateModel]
+
         public async Task<IActionResult> Register([FromBody] RegistrationUserRequestDto registrationUserRequestDto)
         {
             // Create Identity user

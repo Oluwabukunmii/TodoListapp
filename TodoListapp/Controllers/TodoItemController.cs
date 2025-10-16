@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TodoListapp.CustomActionFilters;
 using TodoListapp.Data;
 using TodoListapp.Models.Domain;
 using TodoListapp.Models.Dtos;
@@ -122,9 +123,11 @@ This ensures that this Todo item is owned by the current user.
         //GET :http// localhost:portnumber/ api/TodoItem
 
 
-      [HttpGet]
+         [HttpGet]
         [Route("{id:Guid}")]
         [Authorize]
+        [ValidateModel]
+
 
 
         public async Task<IActionResult> GetbyId([FromRoute] Guid id)
@@ -167,6 +170,8 @@ This ensures that this Todo item is owned by the current user.
 
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
+
 
         public async Task<IActionResult> Update([FromRoute] Guid id ,[FromBody] updateTodoDto updateTodoDto)
 

@@ -4,18 +4,16 @@ namespace TodoListapp.Models.Dtos
 {
     public class RegistrationUserRequestDto
     {
+        [Required]
 
         public string Name { get; set; }
 
+        [Required]
 
         public string Email { get; set; }
 
-      /*  [Required]
-
-        [MinLength(8, ErrorMessage = "Password has to be a minimum length of 8 characters")]
-
-        [MaxLength(20)]
-      */
+      
+        [Required]
 
 
         public string Password { get; set; }
