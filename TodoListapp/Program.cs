@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using TodoListapp.Data;
 using TodoListapp.Mappings;
-using TodoListapp.Repositories;
+using TodoListapp.Services;
 using Microsoft.OpenApi.Models;
 using TodoListapp.Interfaces;
 
@@ -66,8 +66,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("TodolistappAuthC
 
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));                                             //Add automapperprofiles
-builder.Services.AddScoped<ITodoItemRepository, TodoItemRepository>();                                 //Add repository
-builder.Services.AddScoped<ITokenRepository, TokenRepository>();
+builder.Services.AddScoped<ITodoItemService, TodoItemService>();                                 //Add repository
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 
 builder.Services.AddControllers()

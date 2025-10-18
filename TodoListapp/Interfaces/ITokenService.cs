@@ -2,7 +2,7 @@
 
 namespace TodoListapp.Interfaces
 {
-    public interface ITokenRepository 
+    public interface ITokenService 
     {
         string CreateJWTToken(IdentityUser user);
 

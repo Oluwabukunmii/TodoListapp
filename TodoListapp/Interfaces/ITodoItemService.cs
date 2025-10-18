@@ -2,7 +2,7 @@
 
 namespace TodoListapp.Interfaces
 {
-    public interface ITodoItemRepository
+    public interface ITodoItemService
     {
         Task<TodoItem> CreateAsync(TodoItem TodoItem);
 

@@ -12,18 +12,19 @@ using TodoListapp.Models.Dtos;
 
 namespace TodoListapp.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> userManager;
-        private readonly ITokenRepository tokenRespository;
+        private readonly ITokenService tokenService;
         private readonly Todolistdbcontext todolistdbcontext;
 
-        public AuthController(UserManager<IdentityUser> userManager , ITokenRepository tokenRespository, Todolistdbcontext todolistdbcontext)
+        public AuthController(UserManager<IdentityUser> userManager , ITokenService tokenService, Todolistdbcontext todolistdbcontext)
         {
             this.userManager = userManager;
-            this.tokenRespository = tokenRespository;
+            this.tokenService = tokenService;
             this.todolistdbcontext = todolistdbcontext;
         }
         [Route("Register")]
@@ -84,7 +85,7 @@ namespace TodoListapp.Controllers
 
                     // Create token
 
-                    var jwtToken = tokenRespository.CreateJWTToken(user);
+                    var jwtToken = tokenService.CreateJWTToken(user);
 
                     var response = new loginResponseDto
 

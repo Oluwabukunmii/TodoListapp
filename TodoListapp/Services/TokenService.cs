@@ -4,14 +4,15 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using TodoListapp.Interfaces;
 
-namespace TodoListapp.Repositories
+namespace TodoListapp.Services
 {
-    public class TokenRepository : ITokenRepository
+    public class TokenService : ITokenService
     {
         private readonly IConfiguration configuration;
 
-        public TokenRepository(IConfiguration configuration)
+        public TokenService(IConfiguration configuration)
         {
             this.configuration = configuration;
         }

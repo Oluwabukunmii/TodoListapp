@@ -10,17 +10,18 @@ namespace TodoListapp.Models.Dtos
         [MinLength(2, ErrorMessage = "Code has to be a minimum length of 1 characters")]
         [MaxLength(20, ErrorMessage = "Code has to be a maximum length of 20 characters")]
 
-        public string Title { get; set; }
+        public  string Title { get; set; }
 
 
         [Required]
         [MaxLength(100, ErrorMessage = "Name has to be a maximum length of 100 characters")]
-        public string? Description { get; set; }
+        public   string? Description { get; set; }
 
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+       public    DateTime CreatedDate { get; set; } = DateTime.Now;
 
         //     public Guid UserId { get; set; }
-        public TodoItemStatus Status { get; set; }
+       public TodoItemStatus Status { get; set; }
 
     }
 }
+

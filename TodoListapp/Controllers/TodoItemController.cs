@@ -9,7 +9,7 @@ using TodoListapp.Data;
 using TodoListapp.Interfaces;
 using TodoListapp.Models.Domain;
 using TodoListapp.Models.Dtos;
-using TodoListapp.Repositories;
+using TodoListapp.Services;
 
 namespace TodoListapp.Controllers
 {
@@ -21,13 +21,13 @@ namespace TodoListapp.Controllers
         private readonly Todolistdbcontext dbContext;
         private readonly IMapper mapper;
 
-        public ITodoItemRepository TodoItemRepository { get; }
+        public ITodoItemService TodoItemService { get; }
 
-        public TodoItemController(Todolistdbcontext dbContext, IMapper mapper, ITodoItemRepository TodoItemRepository)
+        public TodoItemController(Todolistdbcontext dbContext, IMapper mapper, ITodoItemService TodoItemService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
-            this.TodoItemRepository = TodoItemRepository;
+            this.TodoItemService = TodoItemService;
         }
 
 
@@ -72,7 +72,7 @@ This ensures that this Todo item is owned by the current user.
 
             //Save changes to Database
 
-            await TodoItemRepository.CreateAsync(TodoItemDomainmodel);
+            await TodoItemService.CreateAsync(TodoItemDomainmodel);
 
             //Map domain Model back to dto
 
@@ -106,7 +106,7 @@ This ensures that this Todo item is owned by the current user.
 
             // GetAll data from database 
 
-            var TodoItemDomainmodel = await TodoItemRepository.GetAllAsync(userId, FilterOn, filterQuery, sortBy, IsAscending ?? true);
+            var TodoItemDomainmodel = await TodoItemService.GetAllAsync(userId, FilterOn, filterQuery, sortBy, IsAscending ?? true);
 
             // Map domain model back to Dto
 
@@ -150,7 +150,7 @@ This ensures that this Todo item is owned by the current user.
 
             //Get data from database
 
-            var TodoItem = await TodoItemRepository.GetbyIdAsync(userId, id);
+            var TodoItem = await TodoItemService.GetbyIdAsync(userId, id);
 
             if (TodoItem == null)
             {
@@ -199,7 +199,7 @@ This ensures that this Todo item is owned by the current user.
             //Save changes to Database
 
 
-            var todoItem = await TodoItemRepository.UpdateAsync(userId, id, TodoDomainModel);
+            var todoItem = await TodoItemService.UpdateAsync(userId, id, TodoDomainModel);
 
 
 
@@ -239,7 +239,7 @@ This ensures that this Todo item is owned by the current user.
 
             //save chaanges to db
 
-            var DeletedTodo= await TodoItemRepository.DeleteAsync(id, userId);
+            var DeletedTodo= await TodoItemService.DeleteAsync(id, userId);
 
 
             if (DeletedTodo == null)
@@ -252,7 +252,9 @@ This ensures that this Todo item is owned by the current user.
 
             //Map domain model to Dto
 
-            return Ok(mapper.Map<TodoItemDto>(DeletedTodo));
+            mapper.Map<TodoItemDto>(DeletedTodo);
+
+            return Ok("Todo Item successfully deleted");
 
 
         }

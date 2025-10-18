@@ -1,15 +1,16 @@
 ﻿using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using TodoListapp.Data;
+using TodoListapp.Interfaces;
 using TodoListapp.Models.Domain;
 
-namespace TodoListapp.Repositories
+namespace TodoListapp.Services
 {
-    public class TodoItemRepository : ITodoItemRepository
+    public class TodoItemService : ITodoItemService
     {
         private readonly Todolistdbcontext dbContext;
 
-        public TodoItemRepository(Todolistdbcontext dbContext)
+        public TodoItemService(Todolistdbcontext dbContext)
         {
             this.dbContext = dbContext;
         }
